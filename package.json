@@ -1,0 +1,30 @@
+{
+  "name": "@bsi/chart-data-source",
+  "version": "1.0.0",
+  "description": "Initialize a chart from a data-source part in BSI CX.",
+  "author": "BSI Business Systems Integration AG",
+  "contributors": [
+    "Oliver Fabel <Oliver.Fabel@bsi-software.com"
+  ],
+  "license": "BSI CRM Software License",
+  "homepage": "https://www.bsi-software.com",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://git.bsiag.com/studio-projekte/master-template/chart-data-source"
+  },
+  "bugs": {
+    "url": "https://services.bsi-software.com/bsicrm/"
+  },
+  "browser": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chart.js": "^3.2.1",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0"
+  }
+}
