@@ -1,4 +1,5 @@
 import Environment from './environment';
+import ChartModelParser from './model/parser';
 
 export default class ChartDataSource {
     /**
@@ -6,14 +7,31 @@ export default class ChartDataSource {
      * @param {Environment} [environment=Environment.CHART_JS] - The adapter to use.
      */
     constructor(element, environment) {
+        /**
+         * @type {HTMLElement}
+         * @private
+         */
         this._element = this._validateElement(element);
+        /**
+         * @type {Environment}
+         * @private
+         */
         this._environment = this._validateEnvironment(environment);
+        /**
+         * @type {string}
+         * @private
+         */
         this._url = element.dataset.bsiDataSourceUrl || throw new Error('data source url not found on element');
+        /**
+         * @type {ChartDataModel|null}
+         * @private
+         */
+        this._data = null;
         /**
          * @type {{}|null}
          * @private
          */
-        this._data = null;
+        this._rawData = null;
         /**
          * @type {*}
          * @private
@@ -48,10 +66,17 @@ export default class ChartDataSource {
     }
 
     /**
-     * @returns {{}|null}
+     * @returns {ChartDataModel|null}
      */
     getData() {
         return this._data;
+    }
+
+    /**
+     * @returns {{}|null}
+     */
+    getRawData() {
+        return this._rawData;
     }
 
     /**
@@ -90,13 +115,18 @@ export default class ChartDataSource {
                 }
             })
             .then(data => {
-                this._data = data;
+                const parser = new ChartModelParser();
+                this._rawData = data;
+                this._data = parser.parse(data);
                 this._config = this.getEnvironment().adapter.handle(data);
                 return new Promise(resolve => resolve(this._config));
             })
             .catch(error => console.error(error));
     }
 
+    /**
+     * @returns {Promise<any>}
+     */
     render() {
         this.fetchData()
             .then(config => {

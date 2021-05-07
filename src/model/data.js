@@ -1,0 +1,23 @@
+import AbstractChartModel from './abstract';
+
+export default class ChartDataModel extends AbstractChartModel {
+    /**
+     * @returns {string}
+     */
+    static getType() {
+        return 'studio.ChartData';
+    }
+
+    /**
+     * @type {ChartDataAxeModel[]}
+     */
+    axes = [];
+    /**
+     * @type {ChartDataConfigModel}
+     */
+    config = undefined;
+    /**
+     * @type {ChartDataDatasetModel[]}
+     */
+    data = [];
+}

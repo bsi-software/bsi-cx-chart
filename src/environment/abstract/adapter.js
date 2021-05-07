@@ -1,9 +1,9 @@
 export default class AbstractAdapter {
     /**
-     * @param {{}} data - The data to transform.
+     * @param {ChartDataModel} model - The data to transform.
      * @returns {*}
      */
-    handle(data) {
-        return data;
+    handle(model) {
+        return model;
     }
 }
