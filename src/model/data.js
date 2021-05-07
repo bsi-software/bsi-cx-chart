@@ -20,4 +20,10 @@ export default class ChartDataModel extends AbstractChartModel {
      * @type {ChartDataDatasetModel[]}
      */
     data = [];
+
+    validate() {
+        if (this.config === undefined) {
+            throw new Error('config is required');
+        }
+    }
 }

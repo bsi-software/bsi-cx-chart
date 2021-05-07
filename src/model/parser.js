@@ -41,7 +41,9 @@ export default class ChartModelParser {
     _init(data) {
         const model = this._resolveType(data._type);
         for (const [key, value] of Object.entries(data)) {
-            model[key] = this.parse(value);
+            if (model.hasOwnProperty(key)) {
+                model[key] = this.parse(value);
+            }
         }
         model.validate();
         return model;

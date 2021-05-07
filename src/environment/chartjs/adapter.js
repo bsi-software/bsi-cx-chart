@@ -1,40 +1,44 @@
 import AbstractAdapter from '../abstract/adapter';
+import ChartJsBarChartAdapter from './adapter/bar';
+import ChartJsLineChartAdapter from './adapter/line';
+import ChartJsRadarChartAdapter from './adapter/radar';
+import ChartJsDoughnutChartAdapter from './adapter/doughnut';
 
 export default class ChartJsAdapter extends AbstractAdapter {
+    /**
+     * @type {Map<string, AbstractChartJsChartAdapter>}
+     */
+    CHART_ADAPTERS = new Map([
+        [ChartJsBarChartAdapter.getType(), ChartJsBarChartAdapter],
+        [ChartJsLineChartAdapter.getType(), ChartJsLineChartAdapter],
+        [ChartJsRadarChartAdapter.getType(), ChartJsRadarChartAdapter],
+        [ChartJsDoughnutChartAdapter.getType(), ChartJsDoughnutChartAdapter]
+    ]);
+
     /**
      * @param {ChartDataModel} model
      */
     handle(model) {
+        const adapter = this._resolveAdapter(model.config.type);
         return {
             type: model.config.type,
             data: {
-                labels: this._extractLabels(model.axes),
-                datasets: this._extractDatasets(model.data)
+                labels: adapter.extractLabels(model),
+                datasets: adapter.extractDatasets(model)
             }
         };
     }
 
     /**
-     * @param {ChartDataAxeModel[]} axes
-     * @returns {string[]}
+     * @param type
+     * @returns {AbstractChartJsChartAdapter}
      * @private
      */
-    _extractLabels(axes) {
-        return axes.length === 1 ? axes[0].labels.map(obj => obj.label) : [];
+    _resolveAdapter(type) {
+        const adapter = this.CHART_ADAPTERS.get(type);
+        if (adapter === undefined) {
+            throw new Error(`adapter ${adapter} is unknown`);
+        }
+        return adapter();
     }
-
-    /**
-     * @param {ChartDataDatasetModel[]} data
-     * @returns {{}[]}
-     * @private
-     */
-    _extractDatasets(data) {
-        data.map(dataset => {
-            return {
-                label: dataset.label,
-                data: dataset.values.map(value => value.tuples[0].value)
-            };
-        })
-    }
-
 }
