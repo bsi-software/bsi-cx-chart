@@ -7,6 +7,13 @@ export default class AbstractChartJsChartAdapter {
     }
 
     /**
+     * @returns {boolean}
+     */
+    hasLabels() {
+        return true;
+    }
+
+    /**
      * @param {ChartDataModel} model
      * @returns {string[]}
      */
@@ -40,13 +47,22 @@ export default class AbstractChartJsChartAdapter {
 
     /**
      * @param {ChartDataDatasetValueModel} value
-     * @returns {number}
+     * @returns {number|{}}
      * @private
      */
     _extractValueFromValueModel(value) {
         if (value.tuples.length === 0) {
             throw new Error('value requires at least one tuple');
         }
-        return value.tuples[0].value;
+        switch (value.tuples.length) {
+            case 0:
+                throw new Error('value requires at least one tuple');
+            case 1:
+                return value.tuples[0].value;
+            default:
+                const data = {};
+                value.tuples.forEach(tuple => data[tuple.dimension] = tuple.value);
+                return data;
+        }
     }
 }

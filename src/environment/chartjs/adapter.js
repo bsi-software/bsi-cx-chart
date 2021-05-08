@@ -3,6 +3,10 @@ import ChartJsBarChartAdapter from './adapter/bar';
 import ChartJsLineChartAdapter from './adapter/line';
 import ChartJsRadarChartAdapter from './adapter/radar';
 import ChartJsDoughnutChartAdapter from './adapter/doughnut';
+import ChartJsPieChartAdapter from './adapter/pie';
+import ChartJsPolarChartAdapter from './adapter/polar';
+import ChartJsBubbleChartAdapter from './adapter/bubble';
+import ChartJsScatterChartAdapter from './adapter/scatter';
 
 export default class ChartJsAdapter extends AbstractAdapter {
     /**
@@ -12,7 +16,11 @@ export default class ChartJsAdapter extends AbstractAdapter {
         [ChartJsBarChartAdapter.getType(), ChartJsBarChartAdapter],
         [ChartJsLineChartAdapter.getType(), ChartJsLineChartAdapter],
         [ChartJsRadarChartAdapter.getType(), ChartJsRadarChartAdapter],
-        [ChartJsDoughnutChartAdapter.getType(), ChartJsDoughnutChartAdapter]
+        [ChartJsDoughnutChartAdapter.getType(), ChartJsDoughnutChartAdapter],
+        [ChartJsPieChartAdapter.getType(), ChartJsPieChartAdapter],
+        [ChartJsPolarChartAdapter.getType(), ChartJsPolarChartAdapter],
+        [ChartJsBubbleChartAdapter.getType(), ChartJsBubbleChartAdapter],
+        [ChartJsScatterChartAdapter.getType(), ChartJsScatterChartAdapter]
     ]);
 
     /**
@@ -20,13 +28,16 @@ export default class ChartJsAdapter extends AbstractAdapter {
      */
     handle(model) {
         const adapter = this._resolveAdapter(model.config.type);
-        return {
+        const data = {
             type: model.config.type,
             data: {
-                labels: adapter.extractLabels(model),
                 datasets: adapter.extractDatasets(model)
             }
         };
+        if (adapter.hasLabels()) {
+            data.labels = adapter.extractLabels(model);
+        }
+        return data;
     }
 
     /**
