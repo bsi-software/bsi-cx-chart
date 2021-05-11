@@ -1,4 +1,4 @@
-import {Chart, ChartConfiguration} from 'chart.js';
+import Chart from 'chart.js/auto';
 
 import AbstractRender from '../abstract/render';
 
@@ -6,7 +6,7 @@ export default class ChartJsRender extends AbstractRender {
     /**
      * @param {Chart|null} chart
      * @param {HTMLElement} element
-     * @param {ChartConfiguration} config
+     * @param {{}} config
      * @returns {Chart}
      */
     render(chart, element, config) {
@@ -14,8 +14,8 @@ export default class ChartJsRender extends AbstractRender {
             const canvas = this._replaceElementWithCanvas(element);
             return new Chart(canvas.getContext('2d'), config);
         }
-        chart.options = config.options;
-        chart.data = config.data;
+        chart.options = config.options || chart.options;
+        chart.data = config.data || chart.data;
         chart.update();
         return chart;
     }

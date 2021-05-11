@@ -28,16 +28,16 @@ export default class ChartJsAdapter extends AbstractAdapter {
      */
     handle(model) {
         const adapter = this._resolveAdapter(model.config.type);
-        const data = {
+        const config = {
             type: model.config.type,
             data: {
                 datasets: adapter.extractDatasets(model)
             }
         };
         if (adapter.hasLabels()) {
-            data.labels = adapter.extractLabels(model);
+            config.data.labels = adapter.extractLabels(model);
         }
-        return data;
+        return config;
     }
 
     /**
@@ -50,6 +50,6 @@ export default class ChartJsAdapter extends AbstractAdapter {
         if (adapter === undefined) {
             throw new Error(`adapter ${adapter} is unknown`);
         }
-        return adapter();
+        return new adapter();
     }
 }

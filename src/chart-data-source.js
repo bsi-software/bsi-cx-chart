@@ -21,7 +21,7 @@ export default class ChartDataSource {
          * @type {string}
          * @private
          */
-        this._url = element.dataset.bsiDataSourceUrl || throw new Error('data source url not found on element');
+        this._url = this._validateDataSourceUrl(element);
         /**
          * @type {ChartDataModel|null}
          * @private
@@ -172,5 +172,18 @@ export default class ChartDataSource {
             return environment;
         }
         throw new Error('environment is not valid');
+    }
+
+    /**
+     * @param {HTMLElement} element
+     * @returns {string}
+     * @private
+     */
+    _validateDataSourceUrl(element) {
+        const url = element.dataset.bsiDataSourceUrl;
+        if (!url) {
+            throw new Error('data source url not found on element');
+        }
+        return url;
     }
 };

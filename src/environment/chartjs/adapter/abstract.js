@@ -58,7 +58,7 @@ export default class AbstractChartJsChartAdapter {
             case 0:
                 throw new Error('value requires at least one tuple');
             case 1:
-                return value.tuples[0].value;
+                return value.tuples.pop().value;
             default:
                 const data = {};
                 value.tuples.forEach(tuple => data[tuple.dimension] = tuple.value);
