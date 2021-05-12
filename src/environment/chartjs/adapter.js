@@ -12,7 +12,7 @@ export default class ChartJsAdapter extends AbstractAdapter {
     /**
      * @type {Map<string, AbstractChartJsChartAdapter>}
      */
-    CHART_ADAPTERS = new Map([
+    static CHART_ADAPTERS = new Map([
         [ChartJsBarChartAdapter.getType(), ChartJsBarChartAdapter],
         [ChartJsLineChartAdapter.getType(), ChartJsLineChartAdapter],
         [ChartJsRadarChartAdapter.getType(), ChartJsRadarChartAdapter],
@@ -46,7 +46,7 @@ export default class ChartJsAdapter extends AbstractAdapter {
      * @private
      */
     _resolveAdapter(type) {
-        const adapter = this.CHART_ADAPTERS.get(type);
+        const adapter = ChartJsAdapter.CHART_ADAPTERS.get(type);
         if (adapter === undefined) {
             throw new Error(`adapter ${adapter} is unknown`);
         }

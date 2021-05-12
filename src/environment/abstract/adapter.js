@@ -4,6 +4,6 @@ export default class AbstractAdapter {
      * @returns {*}
      */
     handle(model) {
-        return model;
+        throw new Error('not implemented');
     }
 }

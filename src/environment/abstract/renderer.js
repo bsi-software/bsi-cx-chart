@@ -1,4 +1,4 @@
-export default class AbstractRender {
+export default class AbstractRenderer {
     /**
      * @param {*} chart - The chart object.
      * @param {HTMLElement} element - The HTML element to display the rendered chart.
@@ -6,6 +6,6 @@ export default class AbstractRender {
      * @returns {*}
      */
     render(chart, element, config) {
-        return null;
+        throw new Error('not implemented');
     }
 }

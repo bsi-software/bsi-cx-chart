@@ -1,5 +1,5 @@
 import ChartJsAdapter from './chartjs/adapter';
-import ChartJsRender from './chartjs/render';
+import ChartJsRenderer from './chartjs/renderer';
 
 export default class Environment {
     /**
@@ -7,16 +7,16 @@ export default class Environment {
      * @see https://www.chartjs.org/
      * @type Environment
      */
-    static CHART_JS = new Environment('Chart.js', new ChartJsAdapter(), new ChartJsRender());
+    static CHART_JS = new Environment('Chart.js', new ChartJsAdapter(), new ChartJsRenderer());
 
     /**
      * @param {string} name
      * @param {AbstractAdapter} adapter
-     * @param {AbstractRender} render
+     * @param {AbstractRenderer} renderer
      */
-    constructor(name, adapter, render) {
+    constructor(name, adapter, renderer) {
         this.name = name;
         this.adapter = adapter;
-        this.render = render;
+        this.renderer = renderer;
     }
 };

@@ -130,7 +130,7 @@ export default class ChartDataSource {
     render() {
         this.fetchData()
             .then(config => {
-                this._chart = this.getEnvironment().render.render(this.getChart(), this.getElement(), config);
+                this._chart = this.getEnvironment().renderer.render(this.getChart(), this.getElement(), config);
                 return new Promise(resolve => resolve(this._chart));
             })
             .catch(error => console.error(error));

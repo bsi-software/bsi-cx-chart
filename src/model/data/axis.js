@@ -1,15 +1,15 @@
 import AbstractChartModel from '../abstract';
 
-export default class ChartDataAxeModel extends AbstractChartModel {
+export default class ChartDataAxisModel extends AbstractChartModel {
     /**
      * @returns {string}
      */
     static getType() {
-        return 'studio.ChartDataAxe';
+        return 'studio.ChartDataAxis';
     }
 
     /**
-     * @type {ChartDataAxeLabelModel[]}
+     * @type {ChartDataAxisLabelModel[]}
      */
     labels = [];
 }

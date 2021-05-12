@@ -9,7 +9,7 @@ export default class ChartDataModel extends AbstractChartModel {
     }
 
     /**
-     * @type {ChartDataAxeModel[]}
+     * @type {ChartDataAxisModel[]}
      */
     axes = [];
     /**

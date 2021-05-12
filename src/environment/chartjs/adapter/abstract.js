@@ -19,7 +19,7 @@ export default class AbstractChartJsChartAdapter {
      */
     extractLabels(model) {
         /**
-         * @type {ChartDataAxeModel[]}
+         * @type {ChartDataAxisModel[]}
          */
         const axes = model.axes || [];
         if (axes.length === 0) {

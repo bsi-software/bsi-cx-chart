@@ -1,8 +1,8 @@
 import Chart from 'chart.js/auto';
 
-import AbstractRender from '../abstract/render';
+import AbstractRenderer from '../abstract/renderer';
 
-export default class ChartJsRender extends AbstractRender {
+export default class ChartJsRenderer extends AbstractRenderer {
     /**
      * @param {Chart|null} chart
      * @param {HTMLElement} element
