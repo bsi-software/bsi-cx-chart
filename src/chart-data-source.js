@@ -1,10 +1,10 @@
-import Environment from './environment';
+import ChartEnvironment from './environment';
 import ChartModelParser from './model/parser';
 
 export default class ChartDataSource {
     /**
      * @param {HTMLElement} element - The target element.
-     * @param {Environment} [environment=Environment.CHART_JS] - The adapter to use.
+     * @param {ChartEnvironment} [environment=ChartEnvironment.CHART_JS] - The adapter to use.
      */
     constructor(element, environment) {
         /**
@@ -13,7 +13,7 @@ export default class ChartDataSource {
          */
         this._element = this._validateElement(element);
         /**
-         * @type {Environment}
+         * @type {ChartEnvironment}
          * @private
          */
         this._environment = this._validateEnvironment(environment);
@@ -52,7 +52,7 @@ export default class ChartDataSource {
     }
 
     /**
-     * @returns {Environment}
+     * @returns {ChartEnvironment}
      */
     getEnvironment() {
         return this._environment;
@@ -137,11 +137,11 @@ export default class ChartDataSource {
     }
 
     /**
-     * @returns {Environment}
+     * @returns {ChartEnvironment}
      * @private
      */
     _getDefaultEnvironment() {
-        return Environment.CHART_JS;
+        return ChartEnvironment.CHART_JS;
     }
 
     /**
@@ -161,14 +161,14 @@ export default class ChartDataSource {
 
     /**
      * @param environment
-     * @returns {Environment}
+     * @returns {ChartEnvironment}
      * @private
      */
     _validateEnvironment(environment) {
         if (!environment) {
             return this._getDefaultEnvironment();
         }
-        if (environment instanceof Environment) {
+        if (environment instanceof ChartEnvironment) {
             return environment;
         }
         throw new Error('environment is not valid');

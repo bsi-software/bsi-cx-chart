@@ -1,13 +1,13 @@
 import ChartJsAdapter from './chartjs/adapter';
 import ChartJsRenderer from './chartjs/renderer';
 
-export default class Environment {
+export default class ChartEnvironment {
     /**
      * The Chart.js environment.
      * @see https://www.chartjs.org/
-     * @type Environment
+     * @type ChartEnvironment
      */
-    static CHART_JS = new Environment('Chart.js', new ChartJsAdapter(), new ChartJsRenderer());
+    static CHART_JS = new ChartEnvironment('Chart.js', new ChartJsAdapter(), new ChartJsRenderer());
 
     /**
      * @param {string} name
