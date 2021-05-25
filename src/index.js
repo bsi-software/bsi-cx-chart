@@ -1,12 +1,12 @@
 import 'whatwg-fetch';
 
-import ChartDataSource from './chart-data-source';
+import ChartUrlProvider from './chart-url-provider';
 import ChartEnvironment from './environment';
 
-window.ChartDataSource = ChartDataSource;
+window.ChartUrlProvider = ChartUrlProvider;
 window.ChartEnvironment = ChartEnvironment;
 
 export {
     ChartEnvironment,
-    ChartDataSource
+    ChartUrlProvider
 };

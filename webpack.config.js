@@ -69,7 +69,7 @@ const config = (name, target, sourceMap) => {
             ]
         },
         output: {
-            filename: 'chart-data-source.min.js',
+            filename: 'chart-url-provider.min.js',
             path: path.resolve(...target)
         },
         performance: {

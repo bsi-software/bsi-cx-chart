@@ -1,7 +1,7 @@
 import ChartEnvironment from './environment';
 import ChartModelParser from './model/parser';
 
-export default class ChartDataSource {
+export default class ChartUrlProvider {
     /**
      * @param {HTMLElement} element - The target element.
      * @param {ChartEnvironment} [environment=ChartEnvironment.CHART_JS] - The adapter to use.
@@ -21,7 +21,7 @@ export default class ChartDataSource {
          * @type {string}
          * @private
          */
-        this._url = this._validateDataSourceUrl(element);
+        this._url = this._validateUrlProviderUrl(element);
         /**
          * @type {ChartDataModel|null}
          * @private
@@ -179,10 +179,10 @@ export default class ChartDataSource {
      * @returns {string}
      * @private
      */
-    _validateDataSourceUrl(element) {
-        const url = element.dataset.bsiDataSourceUrl;
+    _validateUrlProviderUrl(element) {
+        const url = element.dataset.bsiUrlProviderUrl;
         if (!url) {
-            throw new Error('data source url not found on element');
+            throw new Error('url provider url not found on element');
         }
         return url;
     }
