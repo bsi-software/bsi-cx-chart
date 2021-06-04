@@ -46,6 +46,38 @@ export default class AbstractChartJsChartAdapter {
   }
 
   /**
+   * @param {ChartDataConfigLegendModel} model
+   * @returns {{}|undefined}
+   */
+  extractLegend(model) {
+    if (model === undefined) {
+      return undefined;
+    }
+    return {
+      display: model.display,
+      onClick: model.clickable ? undefined : () => void (0),
+      position: model.position,
+      align: model.alignment,
+      title: this._extractLegendTitle(model.title)
+    };
+  }
+
+  /**
+   * @param {string} title
+   * @returns {{}|undefined}
+   * @private
+   */
+  _extractLegendTitle(title) {
+    if (title === undefined) {
+      return undefined;
+    }
+    return {
+      text: title,
+      display: true
+    };
+  }
+
+  /**
    * @param {ChartDataDatasetValueModel} value
    * @returns {number|{}}
    * @private

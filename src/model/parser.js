@@ -2,6 +2,7 @@ import ChartDataModel from './data';
 import ChartDataAxisModel from './data/axis';
 import ChartDataAxisLabelModel from './data/axis/label';
 import ChartDataConfigModel from './data/config';
+import ChartDataConfigLegendModel from './data/config/legend';
 import ChartDataDatasetModel from './data/dataset';
 import ChartDataDatasetValueModel from './data/dataset/value';
 import ChartDataDatasetValueTupleModel from './data/dataset/value/tuple';
@@ -15,6 +16,7 @@ export default class ChartModelParser {
     [ChartDataAxisModel.getType(), ChartDataAxisModel],
     [ChartDataAxisLabelModel.getType(), ChartDataAxisLabelModel],
     [ChartDataConfigModel.getType(), ChartDataConfigModel],
+    [ChartDataConfigLegendModel.getType(), ChartDataConfigLegendModel],
     [ChartDataDatasetModel.getType(), ChartDataDatasetModel],
     [ChartDataDatasetValueModel.getType(), ChartDataDatasetValueModel],
     [ChartDataDatasetValueTupleModel.getType(), ChartDataDatasetValueTupleModel]

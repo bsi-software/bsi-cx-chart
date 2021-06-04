@@ -13,6 +13,16 @@ export default class ChartDataConfigModel extends AbstractChartModel {
    */
   type = undefined;
 
+  /**
+   * @type {boolean}
+   */
+  tooltips = undefined;
+
+  /**
+   * @type {ChartDataConfigLegendModel}
+   */
+  legend = undefined;
+
   validate() {
     if (this.type === undefined) {
       throw new Error('type is required');

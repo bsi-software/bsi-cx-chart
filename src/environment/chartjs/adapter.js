@@ -32,6 +32,14 @@ export default class ChartJsAdapter extends AbstractAdapter {
       type: model.config.type,
       data: {
         datasets: adapter.extractDatasets(model)
+      },
+      options: {
+        plugins: {
+          legend: adapter.extractLegend(model.config.legend),
+          tooltip: {
+            enabled: model.config.tooltips
+          }
+        }
       }
     };
     if (adapter.hasLabels()) {

@@ -29,6 +29,15 @@
   ],
   "config": {
     "_type": "studio.ChartDataConfig",
+    "legend": {
+      "_type": "studio.ChartDataConfigLegend",
+      "alignment": "center",
+      "clickable": true,
+      "display": true,
+      "position": "bottom",
+      "title": "Legend"
+    },
+    "tooltips": true,
     "type": "bar"
   },
   "data": [
@@ -42,7 +51,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 8076
+              "value": 7115
             }
           ]
         },
@@ -52,7 +61,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 6267
+              "value": 3395
             }
           ]
         },
@@ -62,7 +71,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 7584
+              "value": 8914
             }
           ]
         },
@@ -72,7 +81,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 9132
+              "value": 1462
             }
           ]
         },
@@ -82,7 +91,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 1537
+              "value": 2800
             }
           ]
         }
@@ -98,7 +107,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 7198
+              "value": 4918
             }
           ]
         },
@@ -108,7 +117,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 10122
+              "value": 10501
             }
           ]
         },
@@ -118,7 +127,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 4820
+              "value": 1953
             }
           ]
         },
@@ -128,7 +137,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 2468
+              "value": 2092
             }
           ]
         },
@@ -138,7 +147,7 @@
             {
               "_type": "studio.ChartDataDatasetValueTuple",
               "dimension": "y",
-              "value": 6063
+              "value": 2487
             }
           ]
         }
