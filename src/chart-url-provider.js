@@ -5,8 +5,9 @@ export default class ChartUrlProvider {
   /**
    * @param {HTMLElement} element - The target element.
    * @param {ChartEnvironment} [environment=ChartEnvironment.CHART_JS] - The adapter to use.
+   * @param {function({}): {}} [configPostProcessor=config=>config] - Post processor function for the configuration.
    */
-  constructor(element, environment) {
+  constructor(element, environment, configPostProcessor) {
     /**
      * @type {HTMLElement}
      * @private
@@ -17,6 +18,11 @@ export default class ChartUrlProvider {
      * @private
      */
     this._environment = this._validateEnvironment(environment);
+    /**
+     * @type {function({}): {}}
+     * @private
+     */
+    this._configPostProcessor = this._validateConfigPostProcessor(configPostProcessor);
     /**
      * @type {string}
      * @private
@@ -56,6 +62,25 @@ export default class ChartUrlProvider {
    */
   getEnvironment() {
     return this._environment;
+  }
+
+  /**
+   * @returns {function({}): {}}
+   */
+  getConfigPostProcessor() {
+    return this._configPostProcessor;
+  }
+
+  /**
+   * @param {{}} config
+   * @returns {{}}
+   */
+  applyConfigPostProcessor(config) {
+    const processedConfig = this._configPostProcessor(config);
+    if (typeof processedConfig !== 'object') {
+      throw new Error('config post processor returned invalid configuration');
+    }
+    return processedConfig;
   }
 
   /**
@@ -118,7 +143,8 @@ export default class ChartUrlProvider {
         const parser = new ChartModelParser();
         this._rawData = data;
         this._data = parser.parse(data);
-        this._config = this.getEnvironment().adapter.handle(data);
+        const config = this.getEnvironment().adapter.handle(data);
+        this._config = this.applyConfigPostProcessor(config);
         return new Promise(resolve => resolve(this._config));
       })
       .catch(error => console.error(error));
@@ -160,7 +186,7 @@ export default class ChartUrlProvider {
   }
 
   /**
-   * @param environment
+   * @param {*} environment
    * @returns {ChartEnvironment}
    * @private
    */
@@ -172,6 +198,21 @@ export default class ChartUrlProvider {
       return environment;
     }
     throw new Error('environment is not valid');
+  }
+
+  /**
+   * @param {*} configPostProcessor
+   * @returns {function({}): {}}
+   * @private
+   */
+  _validateConfigPostProcessor(configPostProcessor) {
+    if (configPostProcessor === undefined) {
+      return config => config;
+    }
+    if (typeof configPostProcessor === 'function') {
+      return configPostProcessor;
+    }
+    throw new Error('config post processor must be a lambda');
   }
 
   /**
