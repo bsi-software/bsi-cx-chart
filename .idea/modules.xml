@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/chart-data-source.iml" filepath="$PROJECT_DIR$/chart-data-source.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chart-url-provider.iml" filepath="$PROJECT_DIR$/chart-url-provider.iml" />
     </modules>
   </component>
 </project>

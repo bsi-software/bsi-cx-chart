@@ -7,6 +7,6 @@ window.ChartUrlProvider = ChartUrlProvider;
 window.ChartEnvironment = ChartEnvironment;
 
 export {
-    ChartEnvironment,
-    ChartUrlProvider
+  ChartEnvironment,
+  ChartUrlProvider
 };
