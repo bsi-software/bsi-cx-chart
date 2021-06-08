@@ -24,14 +24,15 @@ export default class ChartJsAdapter extends AbstractAdapter {
   ]);
 
   /**
+   * @param {ChartUrlProviderConfig} config
    * @param {ChartDataModel} model
    */
-  handle(model) {
+  transform(config, model) {
     const adapter = this._resolveAdapter(model.config.type);
-    const config = {
+    const chartConfig = {
       type: model.config.type,
       data: {
-        datasets: adapter.extractDatasets(model)
+        datasets: adapter.extractDatasets(config, model)
       },
       options: {
         plugins: {
@@ -43,9 +44,9 @@ export default class ChartJsAdapter extends AbstractAdapter {
       }
     };
     if (adapter.hasLabels()) {
-      config.data.labels = adapter.extractLabels(model);
+      chartConfig.data.labels = adapter.extractLabels(model);
     }
-    return config;
+    return chartConfig;
   }
 
   /**

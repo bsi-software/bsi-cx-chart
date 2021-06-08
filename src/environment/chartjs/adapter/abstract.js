@@ -29,18 +29,23 @@ export default class AbstractChartJsChartAdapter {
   }
 
   /**
+   * @param {ChartUrlProviderConfig} config
    * @param {ChartDataModel} model
    * @returns {{}[]}
    */
-  extractDatasets(model) {
+  extractDatasets(config, model) {
     /**
      * @type {ChartDataDatasetModel[]}
      */
     const datasets = model.data || [];
-    return datasets.map(dataset => {
+    const availableColors = config.getColors();
+    return datasets.map((dataset, index) => {
+      const color = index < availableColors.length ? availableColors[index] : undefined;
       return {
         label: dataset.label,
-        data: dataset.values.map(value => this._extractValueFromValueModel(value))
+        data: dataset.values.map(value => this._extractValueFromValueModel(value)),
+        borderColor: color !== undefined ? color.border.getHex() : color,
+        backgroundColor: color !== undefined ? color.background.getHex() : color
       }
     });
   }

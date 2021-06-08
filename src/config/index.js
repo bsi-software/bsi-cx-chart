@@ -1,4 +1,5 @@
-import ChartEnvironment from './environment';
+import ChartEnvironment from '../environment';
+import ChartUrlProviderConfigColor from './color';
 
 export default class ChartUrlProviderConfig {
   static DEFAULT = new ChartUrlProviderConfig();
@@ -15,14 +16,14 @@ export default class ChartUrlProviderConfig {
      */
     this._configPostProcessor = config => config;
     /**
-     * @type {[string]}
+     * @type {{border:ChartUrlProviderConfigColor,background:ChartUrlProviderConfigColor}[]}
      * @private
      */
     this._colors = [
-      '#ff6384',
-      '#36a2eb',
-      '#cc65fe',
-      '#ffce56'
+      ChartUrlProviderConfigColor.of('#ff6384ff', '#ff638466'),
+      ChartUrlProviderConfigColor.of('#36a2ebff', '#36a2eb66'),
+      ChartUrlProviderConfigColor.of('#cc65feff', '#cc65fe66'),
+      ChartUrlProviderConfigColor.of('#ffce56ff', '#ffce5666')
     ];
   }
 
@@ -77,7 +78,7 @@ export default class ChartUrlProviderConfig {
   }
 
   /**
-   * @returns {string[]}
+   * @returns {{border: ChartUrlProviderConfigColor, background: ChartUrlProviderConfigColor}[]}
    */
   getColors() {
     return this._colors;

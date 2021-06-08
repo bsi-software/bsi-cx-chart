@@ -1,5 +1,5 @@
 import ChartModelParser from './model/parser';
-import ChartUrlProviderConfig from './chart-url-provider-config';
+import ChartUrlProviderConfig from './config';
 
 export default class ChartUrlProvider {
   /**
@@ -130,7 +130,7 @@ export default class ChartUrlProvider {
         const parser = new ChartModelParser();
         this._rawData = data;
         this._data = parser.parse(data);
-        const config = this.getConfig().getEnvironment().adapter.handle(this._data);
+        const config = this.getConfig().getEnvironment().adapter.transform(this.getConfig(), this.getData());
         this._chartConfig = this._applyConfigPostProcessor(config);
         return new Promise(resolve => resolve(this._chartConfig));
       })
