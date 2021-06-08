@@ -1,28 +1,22 @@
-import ChartEnvironment from './environment';
 import ChartModelParser from './model/parser';
+import ChartUrlProviderConfig from './chart-url-provider-config';
 
 export default class ChartUrlProvider {
   /**
    * @param {HTMLElement} element - The target element.
-   * @param {ChartEnvironment} [environment=ChartEnvironment.CHART_JS] - The adapter to use.
-   * @param {function({}): {}} [configPostProcessor=config=>config] - Post processor function for the configuration.
+   * @param {ChartUrlProviderConfig} [config=ChartUrlProviderConfig.DEFAULT] - The configuration to use.
    */
-  constructor(element, environment, configPostProcessor) {
+  constructor(element, config) {
     /**
      * @type {HTMLElement}
      * @private
      */
     this._element = this._validateElement(element);
     /**
-     * @type {ChartEnvironment}
+     * @type {ChartUrlProviderConfig}
      * @private
      */
-    this._environment = this._validateEnvironment(environment);
-    /**
-     * @type {function({}): {}}
-     * @private
-     */
-    this._configPostProcessor = this._validateConfigPostProcessor(configPostProcessor);
+    this._config = this._validateConfig(config);
     /**
      * @type {string}
      * @private
@@ -42,7 +36,7 @@ export default class ChartUrlProvider {
      * @type {*}
      * @private
      */
-    this._config = null;
+    this._chartConfig = null;
     /**
      * @type {*}
      * @private
@@ -58,29 +52,10 @@ export default class ChartUrlProvider {
   }
 
   /**
-   * @returns {ChartEnvironment}
+   * @returns {ChartUrlProviderConfig}
    */
-  getEnvironment() {
-    return this._environment;
-  }
-
-  /**
-   * @returns {function({}): {}}
-   */
-  getConfigPostProcessor() {
-    return this._configPostProcessor;
-  }
-
-  /**
-   * @param {{}} config
-   * @returns {{}}
-   */
-  applyConfigPostProcessor(config) {
-    const processedConfig = this._configPostProcessor(config);
-    if (typeof processedConfig !== 'object') {
-      throw new Error('config post processor returned invalid configuration');
-    }
-    return processedConfig;
+  getConfig() {
+    return this._config;
   }
 
   /**
@@ -105,10 +80,10 @@ export default class ChartUrlProvider {
   }
 
   /**
-   * @returns {*}
+   * @returns {{}}
    */
-  getConfig() {
-    return this._config;
+  getChartConfig() {
+    return this._chartConfig;
   }
 
   /**
@@ -116,6 +91,18 @@ export default class ChartUrlProvider {
    */
   getChart() {
     return this._chart;
+  }
+
+  /**
+   * @param {{}} config
+   * @returns {{}}
+   */
+  _applyConfigPostProcessor(config) {
+    const processedConfig = this.getConfig().getConfigPostProcessor()(config);
+    if (typeof processedConfig !== 'object') {
+      throw new Error('config post processor returned invalid configuration');
+    }
+    return processedConfig;
   }
 
   /**
@@ -143,9 +130,9 @@ export default class ChartUrlProvider {
         const parser = new ChartModelParser();
         this._rawData = data;
         this._data = parser.parse(data);
-        const config = this.getEnvironment().adapter.handle(data);
-        this._config = this.applyConfigPostProcessor(config);
-        return new Promise(resolve => resolve(this._config));
+        const config = this.getConfig().getEnvironment().adapter.handle(this._data);
+        this._chartConfig = this._applyConfigPostProcessor(config);
+        return new Promise(resolve => resolve(this._chartConfig));
       })
       .catch(error => console.error(error));
   }
@@ -156,18 +143,10 @@ export default class ChartUrlProvider {
   render() {
     this.fetchData()
       .then(config => {
-        this._chart = this.getEnvironment().renderer.render(this.getChart(), this.getElement(), config);
+        this._chart = this.getConfig().getEnvironment().renderer.render(this.getChart(), this.getElement(), config);
         return new Promise(resolve => resolve(this._chart));
       })
       .catch(error => console.error(error));
-  }
-
-  /**
-   * @returns {ChartEnvironment}
-   * @private
-   */
-  _getDefaultEnvironment() {
-    return ChartEnvironment.CHART_JS;
   }
 
   /**
@@ -186,33 +165,15 @@ export default class ChartUrlProvider {
   }
 
   /**
-   * @param {*} environment
-   * @returns {ChartEnvironment}
+   * @param config
+   * @returns {ChartUrlProviderConfig}
    * @private
    */
-  _validateEnvironment(environment) {
-    if (!environment) {
-      return this._getDefaultEnvironment();
+  _validateConfig(config) {
+    if (config instanceof ChartUrlProviderConfig) {
+      return config;
     }
-    if (environment instanceof ChartEnvironment) {
-      return environment;
-    }
-    throw new Error('environment is not valid');
-  }
-
-  /**
-   * @param {*} configPostProcessor
-   * @returns {function({}): {}}
-   * @private
-   */
-  _validateConfigPostProcessor(configPostProcessor) {
-    if (configPostProcessor === undefined) {
-      return config => config;
-    }
-    if (typeof configPostProcessor === 'function') {
-      return configPostProcessor;
-    }
-    throw new Error('config post processor must be a lambda');
+    return ChartUrlProviderConfig.DEFAULT;
   }
 
   /**
