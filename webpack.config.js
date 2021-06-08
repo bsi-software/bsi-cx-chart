@@ -51,7 +51,7 @@ const config = (name, target, sourceMap) => {
     },
     devtool: sourceMap ? 'eval-source-map' : false,
     devServer: sourceMap ? {
-      contentBase: path.resolve(__dirname),
+      contentBase: path.resolve(__dirname, 'demo'),
       compress: true,
       host: 'localhost',
       port: 9000,
