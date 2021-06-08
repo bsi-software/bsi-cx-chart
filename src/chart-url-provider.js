@@ -1,10 +1,10 @@
 import ChartModelParser from './model/parser';
-import ChartUrlProviderConfig from './config';
+import ChartConfig from './config';
 
 export default class ChartUrlProvider {
   /**
    * @param {HTMLElement} element - The target element.
-   * @param {ChartUrlProviderConfig} [config=ChartUrlProviderConfig.DEFAULT] - The configuration to use.
+   * @param {ChartConfig} [config=ChartConfig.DEFAULT] - The configuration to use.
    */
   constructor(element, config) {
     /**
@@ -13,7 +13,7 @@ export default class ChartUrlProvider {
      */
     this._element = this._validateElement(element);
     /**
-     * @type {ChartUrlProviderConfig}
+     * @type {ChartConfig}
      * @private
      */
     this._config = this._validateConfig(config);
@@ -52,7 +52,7 @@ export default class ChartUrlProvider {
   }
 
   /**
-   * @returns {ChartUrlProviderConfig}
+   * @returns {ChartConfig}
    */
   getConfig() {
     return this._config;
@@ -166,14 +166,14 @@ export default class ChartUrlProvider {
 
   /**
    * @param config
-   * @returns {ChartUrlProviderConfig}
+   * @returns {ChartConfig}
    * @private
    */
   _validateConfig(config) {
-    if (config instanceof ChartUrlProviderConfig) {
+    if (config instanceof ChartConfig) {
       return config;
     }
-    return ChartUrlProviderConfig.DEFAULT;
+    return ChartConfig.DEFAULT;
   }
 
   /**

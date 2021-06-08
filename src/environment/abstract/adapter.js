@@ -1,6 +1,6 @@
 export default class AbstractAdapter {
   /**
-   * @param {ChartUrlProviderConfig} config - The chart url provider configuration.
+   * @param {ChartConfig} config - The chart url provider configuration.
    * @param {ChartDataModel} model - The data to transform.
    * @returns {*}
    */

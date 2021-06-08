@@ -1,8 +1,8 @@
 import ChartEnvironment from '../environment';
-import ChartUrlProviderConfigColor from './color';
+import ChartConfigColor from './color';
 
-export default class ChartUrlProviderConfig {
-  static DEFAULT = new ChartUrlProviderConfig();
+export default class ChartConfig {
+  static DEFAULT = new ChartConfig();
 
   constructor() {
     /**
@@ -16,20 +16,20 @@ export default class ChartUrlProviderConfig {
      */
     this._configPostProcessor = config => config;
     /**
-     * @type {{border:ChartUrlProviderConfigColor,background:ChartUrlProviderConfigColor}[]}
+     * @type {{border:ChartConfigColor,background:ChartConfigColor}[]}
      * @private
      */
     this._colors = [
-      ChartUrlProviderConfigColor.of('#ff6384ff', '#ff638466'),
-      ChartUrlProviderConfigColor.of('#36a2ebff', '#36a2eb66'),
-      ChartUrlProviderConfigColor.of('#cc65feff', '#cc65fe66'),
-      ChartUrlProviderConfigColor.of('#ffce56ff', '#ffce5666')
+      ChartConfigColor.of('#ff6384ff', '#ff638466'),
+      ChartConfigColor.of('#36a2ebff', '#36a2eb66'),
+      ChartConfigColor.of('#cc65feff', '#cc65fe66'),
+      ChartConfigColor.of('#ffce56ff', '#ffce5666')
     ];
   }
 
   /**
    * @param {ChartEnvironment} environment
-   * @returns {ChartUrlProviderConfig}
+   * @returns {ChartConfig}
    */
   withEnvironment(environment) {
     if (environment instanceof ChartEnvironment) {
@@ -41,7 +41,7 @@ export default class ChartUrlProviderConfig {
 
   /**
    * @param {function({}): {}} configPostProcessor
-   * @returns {ChartUrlProviderConfig}
+   * @returns {ChartConfig}
    */
   withConfigPostProcessor(configPostProcessor) {
     if (typeof configPostProcessor === 'function') {
@@ -53,7 +53,7 @@ export default class ChartUrlProviderConfig {
 
   /**
    * @param {string} colors
-   * @returns {ChartUrlProviderConfig}
+   * @returns {ChartConfig}
    */
   withColors(...colors) {
     if (colors.length > 0) {
@@ -78,7 +78,7 @@ export default class ChartUrlProviderConfig {
   }
 
   /**
-   * @returns {{border: ChartUrlProviderConfigColor, background: ChartUrlProviderConfigColor}[]}
+   * @returns {{border: ChartConfigColor, background: ChartConfigColor}[]}
    */
   getColors() {
     return this._colors;

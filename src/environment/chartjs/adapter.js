@@ -24,7 +24,7 @@ export default class ChartJsAdapter extends AbstractAdapter {
   ]);
 
   /**
-   * @param {ChartUrlProviderConfig} config
+   * @param {ChartConfig} config
    * @param {ChartDataModel} model
    */
   transform(config, model) {

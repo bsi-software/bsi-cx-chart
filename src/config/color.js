@@ -1,4 +1,4 @@
-export default class ChartUrlProviderConfigColor {
+export default class ChartConfigColor {
   static _VALID_COLOR = /^#[0-9a-f]{6,8}$/;
 
   constructor(color) {
@@ -16,7 +16,7 @@ export default class ChartUrlProviderConfigColor {
   }
 
   _validateColor(color) {
-    if (ChartUrlProviderConfigColor._VALID_COLOR.test(color)) {
+    if (ChartConfigColor._VALID_COLOR.test(color)) {
       return color;
     }
     throw new Error(`color ${color} is invalid`);
@@ -25,12 +25,12 @@ export default class ChartUrlProviderConfigColor {
   /**
    * @param {string} border
    * @param {string} background
-   * @returns {{border: ChartUrlProviderConfigColor, background: ChartUrlProviderConfigColor}}
+   * @returns {{border: ChartConfigColor, background: ChartConfigColor}}
    */
   static of(border, background) {
     return {
-      border: new ChartUrlProviderConfigColor(border),
-      background: new ChartUrlProviderConfigColor(background)
+      border: new ChartConfigColor(border),
+      background: new ChartConfigColor(background)
     };
   }
 }

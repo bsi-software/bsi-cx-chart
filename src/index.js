@@ -1,18 +1,18 @@
 import 'whatwg-fetch';
 
-import ChartUrlProviderConfigColor from './config/color';
-import ChartUrlProviderConfig from './config';
+import ChartConfigColor from './config/color';
+import ChartConfig from './config';
 import ChartUrlProvider from './chart-url-provider';
 import ChartEnvironment from './environment';
 
-window.ChartUrlProviderConfigColor = ChartUrlProviderConfigColor;
-window.ChartUrlProviderConfig = ChartUrlProviderConfig;
+window.ChartConfigColor = ChartConfigColor;
+window.ChartConfig = ChartConfig;
 window.ChartUrlProvider = ChartUrlProvider;
 window.ChartEnvironment = ChartEnvironment;
 
 export {
-  ChartUrlProviderConfigColor,
-  ChartUrlProviderConfig,
+  ChartConfigColor,
+  ChartConfig,
   ChartEnvironment,
   ChartUrlProvider
 };

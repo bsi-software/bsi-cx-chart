@@ -29,7 +29,7 @@ export default class AbstractChartJsChartAdapter {
   }
 
   /**
-   * @param {ChartUrlProviderConfig} config
+   * @param {ChartConfig} config
    * @param {ChartDataModel} model
    * @returns {{}[]}
    */
