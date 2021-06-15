@@ -5,12 +5,28 @@
   <title>Bar Chart</title>
 </head>
 <body>
-<div id="chart" data-bsi-url="http://localhost:9000/bar.json"></div>
+<div id="bar-chart" data-bsi-url="http://localhost:9000/bar.json"></div>
+<div id="line-chart" data-bsi-url="http://localhost:9000/line.json"></div>
 <script src="./dist/chart-url-provider.min.js"></script>
 <script>
-  const element = document.getElementById('chart');
-  const chart = new ChartUrlProvider(element);
-  chart.render();
+  // bar chart
+  const bar = document.getElementById('bar-chart');
+  new ChartUrlProvider(bar).render();
+  // line chart
+  const line = document.getElementById('line-chart');
+  const config = new ChartConfig()
+    .withColors(
+      ChartConfigColor.of('#aa0000ff', '#ff000055'),
+      ChartConfigColor.of('#ffaa00ff', '#ffff0055')
+    )
+    .withConfigPostProcessor(config => {
+      config.data.datasets = config.data.datasets.map(dataset => {
+        dataset.fill = true
+        return dataset;
+      });
+      return config;
+    });
+  new ChartUrlProvider(line, config).render();
 </script>
 </body>
 </html>

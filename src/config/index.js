@@ -52,7 +52,7 @@ export default class ChartConfig {
   }
 
   /**
-   * @param {string} colors
+   * @param {{border:ChartConfigColor,background:ChartConfigColor}} colors
    * @returns {ChartConfig}
    */
   withColors(...colors) {

@@ -1,0 +1,157 @@
+{
+  "_type": "studio.ChartData",
+  "axes": [
+    {
+      "_type": "studio.ChartDataAxis",
+      "labels": [
+        {
+          "_type": "studio.ChartDataAxisLabel",
+          "label": "2000"
+        },
+        {
+          "_type": "studio.ChartDataAxisLabel",
+          "label": "2001"
+        },
+        {
+          "_type": "studio.ChartDataAxisLabel",
+          "label": "2002"
+        },
+        {
+          "_type": "studio.ChartDataAxisLabel",
+          "label": "2003"
+        },
+        {
+          "_type": "studio.ChartDataAxisLabel",
+          "label": "2004"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "_type": "studio.ChartDataConfig",
+    "legend": {
+      "_type": "studio.ChartDataConfigLegend",
+      "alignment": "center",
+      "clickable": true,
+      "display": true,
+      "position": "bottom",
+      "title": "Legend"
+    },
+    "tooltips": false,
+    "type": "line"
+  },
+  "data": [
+    {
+      "_type": "studio.ChartDataDataset",
+      "label": "Visitors",
+      "values": [
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 7115
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 3395
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 8914
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 1462
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 2800
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "studio.ChartDataDataset",
+      "label": "Revenue",
+      "values": [
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 4918
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 10501
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 1953
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 2092
+            }
+          ]
+        },
+        {
+          "_type": "studio.ChartDataDatasetValue",
+          "tuples": [
+            {
+              "_type": "studio.ChartDataDatasetValueTuple",
+              "dimension": "y",
+              "value": 2487
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
