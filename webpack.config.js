@@ -18,13 +18,13 @@ const banner = [
 /**
  * @param {string} name
  * @param {string[]} target
- * @param {boolean} sourceMap
+ * @param {boolean} integratedSourceMap
  * @returns {{}}
  */
-const config = (name, target, sourceMap) => ({
+const config = (name, target, integratedSourceMap) => ({
   name: name,
   entry: path.resolve(__dirname, 'src', 'index.js'),
-  mode: sourceMap ? 'development' : 'production',
+  mode: integratedSourceMap ? 'development' : 'production',
   target: 'web',
   module: {
     rules: [
@@ -48,12 +48,8 @@ const config = (name, target, sourceMap) => ({
       }
     ]
   },
-  resolve: {
-    modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src')],
-    extensions: ['.json', '.js']
-  },
-  devtool: sourceMap ? 'eval-source-map' : false,
-  devServer: sourceMap ? {
+  devtool: integratedSourceMap ? 'eval' : 'source-map',
+  devServer: integratedSourceMap ? {
     contentBase: path.resolve(__dirname, 'demo'),
     compress: true,
     host: 'localhost',
@@ -66,11 +62,14 @@ const config = (name, target, sourceMap) => ({
     minimizer: [
       new TerserWebpackPlugin({
         extractComments: false,
-        terserOptions: sourceMap ? {
+        terserOptions: integratedSourceMap ? {
           sourceMap: true
         } : undefined
       })
     ]
+  },
+  externals: {
+    'chart.js/auto': 'Chart'
   },
   output: {
     filename: 'chart-url-provider.min.js',

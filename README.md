@@ -26,6 +26,10 @@ const chart = new ChartUrlProvider(element);
 chart.render();
 ```
 
+To keep the bundle size small, the Chart.js library is not part of the bundle.
+You have to include the library by yourself.
+This can be done either by using a CDN or add it as a dependency to your project.
+
 ### Using Custom Colors
 
 It is possible to configure custom colors per dataset.
@@ -76,3 +80,13 @@ A `ChartEnvironment` consists of a name, adapter and renderer class.
 The _name_ should be unique for the used library.
 The _adapter_ class cares about converting the internal chart data to the format expected by the custom chart library.
 While the _renderer_ class invokes the custom chart library and places the chart in the DOM.
+
+## Contribution
+
+To contribute to this library checkout the GitHub repository and start coding.
+The following NPM scripts are available:
+
+* `npm run watch` starts Webpack in the development mode with watcher and development web server enabled.
+* `npm run build` builds the library in the production mode.
+
+Once your work is done, commit the generated artifacts in the dist folder push and merge your branch.
