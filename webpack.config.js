@@ -69,7 +69,11 @@ const config = (name, target, integratedSourceMap) => ({
     ]
   },
   externals: {
-    'chart.js/auto': 'Chart'
+    'chart.js/auto': {
+      commonjs: 'chart.js/auto',
+      commonjs2: 'chart.js/auto',
+      root: 'Chart'
+    }
   },
   output: {
     filename: 'chart-url-provider.min.js',
@@ -77,6 +81,7 @@ const config = (name, target, integratedSourceMap) => ({
     library: {
       type: 'umd'
     },
+    globalObject: 'this',
     clean: true
   },
   performance: {
