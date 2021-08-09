@@ -1,20 +1,20 @@
 {
-  "name": "@bsi/chart-data-source",
+  "name": "@bsi-cx/chart",
   "version": "1.1.1",
   "description": "Initialize a chart from a data-source part in BSI CX.",
   "author": "BSI Business Systems Integration AG",
   "contributors": [
-    "Oliver Fabel <Oliver.Fabel@bsi-software.com"
+    "Oliver Fabel <Oliver.Fabel@bsi-software.com>"
   ],
   "license": "BSI CRM Software License",
-  "homepage": "https://www.bsi-software.com",
+  "homepage": "https://github.com/bsi-software/bsi-cx-chart#readme",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://git.bsiag.com/studio-projekte/master-template/chart-data-source"
+    "url": "https://github.com/bsi-software/bsi-cx-chart"
   },
   "bugs": {
-    "url": "https://services.bsi-software.com/bsicrm/"
+    "url": "https://github.com/bsi-software/bsi-cx-chart/issues"
   },
   "browser": "./dist/chart-url-provider.min.js",
   "scripts": {
