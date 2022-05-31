@@ -50,12 +50,14 @@ const config = (name, target, integratedSourceMap) => ({
   },
   devtool: integratedSourceMap ? 'eval' : 'source-map',
   devServer: integratedSourceMap ? {
-    contentBase: path.resolve(__dirname, 'demo'),
-    compress: true,
+    static: {
+      directory: path.resolve(__dirname, 'demo')
+    },
+    devMiddleware: {
+      writeToDisk: true
+    },
     host: 'localhost',
-    port: 9000,
-    writeToDisk: true,
-    inline: false
+    port: 9000
   } : undefined,
   optimization: {
     minimize: true,
