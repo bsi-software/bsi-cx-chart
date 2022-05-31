@@ -1,5 +1,5 @@
 [![node >= 14.16.0](https://img.shields.io/badge/node-%3E%3D14.16.0-brightgreen)](https://nodejs.org/)
-[![BSI CX >= 22.0](https://img.shields.io/badge/BSI%20CX-%3E%3D1.3.0-brightgreen)](https://www.bsi-software.com/cx)
+[![BSI CX >= 22.0](https://img.shields.io/badge/BSI%20CX-%3E%3D22.0-brightgreen)](https://www.bsi-software.com/cx)
 [![Install size](https://img.shields.io/github/repo-size/bsi-software/bsi-cx-chart?label=install%20size)](https://github.com/bsi-software/bsi-cx-chart/releases)
 [![Latest available version](https://img.shields.io/github/v/tag/bsi-software/bsi-cx-chart?label=npm)](https://github.com/bsi-software/bsi-cx-chart/releases)
 
