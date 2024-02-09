@@ -21,7 +21,7 @@
   "browser": "./dist/chart-url-provider.min.js",
   "scripts": {
     "watch": "npx webpack serve",
-    "build": "webpack"
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "whatwg-fetch": "^3.6.2"
